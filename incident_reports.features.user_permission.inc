@@ -13,36 +13,67 @@ function incident_reports_user_default_permissions() {
   // Exported permission: 'create incident_report content'.
   $permissions['create incident_report content'] = array(
     'name' => 'create incident_report content',
-    'roles' => array(),
+    'roles' => array(
+      'Incident Report Admin' => 'Incident Report Admin',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any incident_report content'.
   $permissions['delete any incident_report content'] = array(
     'name' => 'delete any incident_report content',
-    'roles' => array(),
+    'roles' => array(
+      'Incident Report Admin' => 'Incident Report Admin',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete own incident_report content'.
   $permissions['delete own incident_report content'] = array(
     'name' => 'delete own incident_report content',
-    'roles' => array(),
+    'roles' => array(
+      'Incident Report Admin' => 'Incident Report Admin',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any incident_report content'.
   $permissions['edit any incident_report content'] = array(
     'name' => 'edit any incident_report content',
-    'roles' => array(),
+    'roles' => array(
+      'Incident Report Admin' => 'Incident Report Admin',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit own incident_report content'.
   $permissions['edit own incident_report content'] = array(
     'name' => 'edit own incident_report content',
-    'roles' => array(),
+    'roles' => array(
+      'Incident Report Admin' => 'Incident Report Admin',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'follow up on incident reports'.
+  $permissions['follow up on incident reports'] = array(
+    'name' => 'follow up on incident reports',
+    'roles' => array(
+      'Incident Report Admin' => 'Incident Report Admin',
+    ),
+    'module' => 'incident_reports',
+  );
+
+  // Exported permission: 'view incident reports'.
+  $permissions['view incident reports'] = array(
+    'name' => 'view incident reports',
+    'roles' => array(
+      'Incident Report Admin' => 'Incident Report Admin',
+    ),
+    'module' => 'incident_reports',
   );
 
   return $permissions;

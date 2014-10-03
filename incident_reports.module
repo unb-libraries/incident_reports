@@ -15,7 +15,7 @@ function incident_reports_menu() {
   $items['incident-reports'] = array(
     'title' => 'Incident Reports',
     'page callback' => '_incident_reports_page',
-    'access arguments' => array('access content'),
+    'access arguments' => array('report an incident'),
   );
   return $items;
 }
@@ -25,6 +25,9 @@ function incident_reports_menu() {
  */
 function incident_reports_permission() {
   return array(
+    'report an incident' => array(
+      'title' => t('Report an Incident'),
+    ),
     'view incident reports' => array(
       'title' => t('View Incident Reports'),
     ),

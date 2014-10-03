@@ -315,10 +315,10 @@ function incident_reports_conditional_fields_default_fields() {
       ),
       'selector' => '',
       'values_set' => 1,
-      'value_form' => 'Harriet Irving Library',
+      'value_form' => 'HIL',
       'value' => array(
         0 => array(
-          'value' => 'Harriet Irving Library',
+          'value' => 'HIL',
         ),
       ),
       'values' => array(),
@@ -630,10 +630,10 @@ function incident_reports_conditional_fields_default_fields() {
       ),
       'selector' => '',
       'values_set' => 1,
-      'value_form' => 'Science and Forestry Library',
+      'value_form' => 'SCI',
       'value' => array(
         0 => array(
-          'value' => 'Science and Forestry Library',
+          'value' => 'SCI',
         ),
       ),
       'values' => array(),
@@ -945,10 +945,10 @@ function incident_reports_conditional_fields_default_fields() {
       ),
       'selector' => '',
       'values_set' => 1,
-      'value_form' => 'Engineering and Computer Science Library',
+      'value_form' => 'ENG',
       'value' => array(
         0 => array(
-          'value' => 'Engineering and Computer Science Library',
+          'value' => 'ENG',
         ),
       ),
       'values' => array(),
@@ -1260,10 +1260,10 @@ function incident_reports_conditional_fields_default_fields() {
       ),
       'selector' => '',
       'values_set' => 1,
-      'value_form' => 'South Gym',
+      'value_form' => 'GYM',
       'value' => array(
         0 => array(
-          'value' => 'South Gym',
+          'value' => 'GYM',
         ),
       ),
       'values' => array(),
