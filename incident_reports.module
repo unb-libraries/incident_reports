@@ -1,0 +1,118 @@
+<?php
+/**
+ * @file
+ * Code for the Incident Reports feature.
+ */
+
+include_once 'incident_reports.features.inc';
+
+
+/**
+ * Implements hook_menu().
+ */
+function incident_reports_menu() {
+  $items = array();
+  $items['incident-reports'] = array(
+    'title' => 'Incident Reports',
+    'page callback' => '_incident_reports_page',
+    'access arguments' => array('access content'),
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function incident_reports_permission() {
+  return array(
+    'view incident reports' => array(
+      'title' => t('View Incident Reports'),
+    ),
+    'follow up on incident reports' => array(
+      'title' => t('Follow up on Incident Reports'),
+    ),
+  );
+}
+/**
+ * Implements hook_form_alter().
+ */
+function incident_reports_form_alter(&$form, $form_state, $form_id) {
+  // Hide follow-up field from regular users.
+  if ($form_id == 'incident_report_node_form' && !user_access('follow up on incident reports')) {
+    $language = $form['field_follow_up']['#language'];
+    $form['field_follow_up'][$language][0]['value']['#type'] = 'hidden';
+  }
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function incident_reports_node_access($node, $op, $account) {
+  // Only allow access for regular users if they created the incident report.
+  $is_incident_report = isset($node->type) && $node->type == 'incident_report';
+  $can_access_all_reports = user_access('view incident reports');
+  global $user;
+  $user_owns_content = isset($node->name) && $user->name == $node->name;
+  $can_access_this_report = $can_access_all_reports || $user_owns_content;
+
+  if ($is_incident_report && !$can_access_this_report) {
+    return NODE_ACCESS_DENY;
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function incident_reports_node_presave($node) {
+  // Clear rooms fields for buildings that are not selected.
+  $is_incident_report = isset($node->type) && $node->type == 'incident_report';
+  if ($is_incident_report) {
+    $language = $node->language;
+    $location = isset($node->field_location_of_incident[$language][0]['value']) ? $node->field_location_of_incident[$language][0]['value'] : '';
+
+    if ($location != 'HIL') {
+      $node->field_hil_rooms[$language][0]['value'] = '';
+    }
+    if ($location != 'SCI') {
+      $node->field_sci_rooms[$language][0]['value'] = '';
+    }
+    if ($location != 'ENG') {
+      $node->field_eng_rooms[$language][0]['value'] = '';
+    }
+    if ($location != 'GYM') {
+      $node->field_south_gym_rooms[$language][0]['value'] = '';
+    }
+  }
+}
+
+/**
+ * Custom page callback function for displaying incident reports (to those with permissions) and displaying a link to add a new incident report (for regular users).
+ */
+function _incident_reports_page() {
+  drupal_add_css(drupal_get_path('module', 'incident_reports') . '/incident_reports.css');
+  $output = '<a href="/node/add/incident-report" class="report-link btn btn-default">Report an incident</a>';
+
+  if (user_access('view incident reports')) {
+    $output .= views_embed_view('incident_reports', 'block_1');
+  }
+  else {
+    $num_incidents = count(views_get_view_result('incident_reports', 'block_2'));
+    $output .= $num_incidents > 0 ? "<h2>Previously Reported Incidents</h2>" : '';
+    $output .= views_embed_view('incident_reports', 'block_2');
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function incident_reports_node_view($node, $view_mode, $langcode) {
+  // Hide follow up field from regular users.
+  $is_incident_report = isset($node->type) && $node->type == 'incident_report';
+  $can_view_follow_up = user_access('follow up on incident reports');
+  if ($is_incident_report && !$can_view_follow_up) {
+    if (isset($node->content['field_follow_up'])) {
+      unset($node->content['field_follow_up']);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+a.report-link.btn.btn-default {
+  background-color: #cc0000;
+  color: #fff;
+  font-size: 1.2em;
+  margin: 20px 0;
+  border-color: #ac2925;
+}
+a.report-link.btn.btn-default:hover, a.report-link.btn.btn-default:focus {
+  background-color: #d43f3a;
+  border-color: #cc0000;
+}

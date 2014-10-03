@@ -1,0 +1,49 @@
+<?php
+/**
+ * @file
+ * incident_reports.features.user_permission.inc
+ */
+
+/**
+ * Implements hook_user_default_permissions().
+ */
+function incident_reports_user_default_permissions() {
+  $permissions = array();
+
+  // Exported permission: 'create incident_report content'.
+  $permissions['create incident_report content'] = array(
+    'name' => 'create incident_report content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete any incident_report content'.
+  $permissions['delete any incident_report content'] = array(
+    'name' => 'delete any incident_report content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete own incident_report content'.
+  $permissions['delete own incident_report content'] = array(
+    'name' => 'delete own incident_report content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any incident_report content'.
+  $permissions['edit any incident_report content'] = array(
+    'name' => 'edit any incident_report content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own incident_report content'.
+  $permissions['edit own incident_report content'] = array(
+    'name' => 'edit own incident_report content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  return $permissions;
+}
