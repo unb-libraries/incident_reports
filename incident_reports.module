@@ -40,10 +40,25 @@ function incident_reports_permission() {
  * Implements hook_form_alter().
  */
 function incident_reports_form_alter(&$form, $form_state, $form_id) {
-  // Hide follow-up field from regular users.
-  if ($form_id == 'incident_report_node_form' && !user_access('follow up on incident reports')) {
-    $language = $form['field_follow_up']['#language'];
-    $form['field_follow_up'][$language][0]['value']['#type'] = 'hidden';
+  if ($form_id == 'incident_report_node_form') {
+    // Change labels for sci-rooms, hil-rooms, etc to just "Rooms"
+    $language = $form['field_hil_rooms']['#language'];
+    $form['field_hil_rooms'][$language]['#title'] = 'Room';
+
+    $language = $form['field_sci_rooms']['#language'];
+    $form['field_sci_rooms'][$language]['#title'] = 'Room';
+
+    $language = $form['field_eng_rooms']['#language'];
+    $form['field_eng_rooms'][$language]['#title'] = 'Room';
+
+    $language = $form['field_south_gym_rooms']['#language'];
+    $form['field_south_gym_rooms'][$language]['#title'] = 'Room';
+
+    // Hide follow-up field from regular users.
+    if (!user_access('follow up on incident reports')) {
+      $language = $form['field_follow_up']['#language'];
+      $form['field_follow_up'][$language][0]['value']['#type'] = 'hidden';
+    }
   }
 }
 
