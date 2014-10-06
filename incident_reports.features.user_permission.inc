@@ -15,7 +15,6 @@ function incident_reports_user_default_permissions() {
     'name' => 'create incident_report content',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
-      'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
   );
@@ -34,7 +33,6 @@ function incident_reports_user_default_permissions() {
     'name' => 'delete own incident_report content',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
-      'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
   );
@@ -53,7 +51,6 @@ function incident_reports_user_default_permissions() {
     'name' => 'edit own incident_report content',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
-      'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
   );
