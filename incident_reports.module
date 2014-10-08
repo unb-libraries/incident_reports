@@ -124,7 +124,6 @@ function incident_reports_node_update($node) {
  * Implements hook_node_insert().
  */
 function incident_reports_node_insert($node) {
-  drupal_set_message('test');
   $is_incident_report = isset($node->type) && $node->type == 'incident_report';
   if ($is_incident_report) {
     _send_notification_email($node, 'create');
