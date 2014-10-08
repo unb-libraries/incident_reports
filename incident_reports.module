@@ -17,6 +17,13 @@ function incident_reports_menu() {
     'page callback' => '_incident_reports_page',
     'access arguments' => array('report an incident'),
   );
+  $items['admin/config/incident-reports'] = array(
+    'title' => 'Incident Reports Configuration',
+    'description' => 'Configuration for Incident Reports',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_incident_reports_config_form'),
+    'access arguments' => array('access administration pages'),
+  );
   return $items;
 }
 
@@ -104,6 +111,27 @@ function incident_reports_node_presave($node) {
 }
 
 /**
+ * Implements hook_node_update().
+ */
+function incident_reports_node_update($node) {
+  $is_incident_report = isset($node->type) && $node->type == 'incident_report';
+  if ($is_incident_report) {
+    _send_notification_email($node, 'update');
+  }
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function incident_reports_node_insert($node) {
+  drupal_set_message('test');
+  $is_incident_report = isset($node->type) && $node->type == 'incident_report';
+  if ($is_incident_report) {
+    _send_notification_email($node, 'create');
+  }
+}
+
+/**
  * Custom page callback function for displaying incident reports (to those with permissions) and displaying a link to add a new incident report (for regular users).
  */
 function _incident_reports_page() {
@@ -132,5 +160,72 @@ function incident_reports_node_view($node, $view_mode, $langcode) {
     if (isset($node->content['field_follow_up'])) {
       unset($node->content['field_follow_up']);
     }
+  }
+}
+
+/**
+ * Page callback for Incident Reports configuration form.
+ */
+function _incident_reports_config_form($form, &$form_state) {
+  $form['incident_reports_notifees'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Users to be notified of new/edited incident reports'),
+    '#description' => t('Please include login IDs for each user to be notified. Separate login IDs by commas.'),
+    '#default_value' => variable_get('incident_reports_notifees'),
+    '#size' => 100,
+    '#maxlength' => 250,
+  );
+  return system_settings_form($form);
+}
+
+/**
+ * Generates notification email when incident report is created or edited.
+ */
+function _send_notification_email($node, $action) {
+  $users_to_notify = variable_get('incident_reports_notifees');
+  global $user;
+  // If no notifees set, no need to send an email.
+  if ($users_to_notify == '') {
+    return;
+  }
+  // Strip out invalid usernames and username of user who created/updated incident report.
+  $users_to_notify = array_filter(
+    explode(',', $users_to_notify),
+    function($elem) {
+      if (!user_load_by_name(trim($elem))) {
+        return false;
+      }
+      if ($user->name == trim($elem)) {
+        return false;
+      }
+      return true;
+    }
+  );
+
+  $nid = $node->nid;
+  $title = $node->title;
+
+  switch ($action) {
+    case 'create':
+      $subject = 'A new incident report has been created';
+      $message = 'A new incident report, "' . $title . '", has been created.';
+    break;
+
+    case 'update':
+      $subject = 'An incident report has been updated';
+      $message = 'An incident report, "' . $title . '", has been updated.';
+    break;
+
+    default:
+      return;
+    break;
+  }
+
+  $message .= "\nView this incident report at http://staff.lib.unb.ca/node/" . $nid;
+  foreach ($users_to_notify as $user) {
+    $headers = "From: libsystems@unb.ca\r\n" .
+              "Reply-To: libsystems@unb.ca\r\n" .
+              'X-Mailer: PHP/' . phpversion();
+    mail($user . '@unb.ca', $subject, $message, $headers);
   }
 }
