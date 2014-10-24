@@ -1,7 +1,6 @@
 name = Incident Reports
 core = 7.x
 package = UNB Library
-version = 7.x-1.0
 project = incident_reports
 configure = admin/config/incident-reports
 dependencies[] = conditional_fields
