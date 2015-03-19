@@ -136,7 +136,7 @@ function incident_reports_node_insert($node) {
 function _incident_reports_page() {
   drupal_add_css(drupal_get_path('module', 'incident_reports') . '/incident_reports.css');
 
-  $output =  '<div class="alert alert-warning alert-dismissible" role="alert">
+  $output =  '<div class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                 <h2 class="first">What is an incident?</h2>
