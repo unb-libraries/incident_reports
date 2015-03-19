@@ -4,7 +4,17 @@ body .container.main-container a.report-link.btn.btn-default {
   margin: 20px 0;
   border-color: #ac2925;
 }
+
 body .container.main-container a.report-link.btn.btn-default:hover, body .container.main-container a.report-link.btn.btn-default:focus {
   background-color: #d43f3a;
   border-color: #cc0000;
 }
+
+div.alert h2 {
+  font-size: 20px;
+}
+
+div.alert h2.first {
+  margin-top: 0;
+}
+

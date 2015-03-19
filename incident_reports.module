@@ -139,7 +139,7 @@ function _incident_reports_page() {
   $output =  '<div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                <h2>What is an incident?</h2>
+                <h2 class="first">What is an incident?</h2>
                 <p>In this context an incident is an event that:</p>
                 <ul>
                   <li>Required staff  support from another unit outside the Libraries to ensure smooth and efficient library operations</li>
