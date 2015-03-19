@@ -15,6 +15,7 @@ function incident_reports_user_default_permissions() {
     'name' => 'create incident_report content',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
+      'Incident Report Reg User (Role for testing only)' => 'Incident Report Reg User (Role for testing only)',
     ),
     'module' => 'node',
   );
@@ -51,6 +52,7 @@ function incident_reports_user_default_permissions() {
     'name' => 'edit own incident_report content',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
+      'Incident Report Reg User (Role for testing only)' => 'Incident Report Reg User (Role for testing only)',
     ),
     'module' => 'node',
   );

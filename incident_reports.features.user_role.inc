@@ -13,7 +13,7 @@ function incident_reports_user_default_roles() {
   // Exported role: Incident Report Admin.
   $roles['Incident Report Admin'] = array(
     'name' => 'Incident Report Admin',
-    'weight' => 25,
+    'weight' => 29,
   );
 
   return $roles;

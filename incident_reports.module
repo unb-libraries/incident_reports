@@ -13,7 +13,7 @@ include_once 'incident_reports.features.inc';
 function incident_reports_menu() {
   $items = array();
   $items['incident-reports'] = array(
-    'title' => 'Incident Reports',
+    'title' => 'Incident Reports (DRAFT)',
     'page callback' => '_incident_reports_page',
     'access arguments' => array('report an incident'),
   );
@@ -135,7 +135,42 @@ function incident_reports_node_insert($node) {
  */
 function _incident_reports_page() {
   drupal_add_css(drupal_get_path('module', 'incident_reports') . '/incident_reports.css');
-  $output = '<a href="/node/add/incident-report" class="report-link btn btn-default">Report an incident</a>';
+
+  $output =  '<div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                <h2>What is an incident?</h2>
+                <p>In this context an incident is an event that:</p>
+                <ul>
+                  <li>Required staff  support from another unit outside the Libraries to ensure smooth and efficient library operations</li>
+                  <li>Required an unusual response from within the libraries in order to ensure smooth and efficient library operations</li>
+                </ul>
+
+                <p>Incidents may involve calling UNB Security, Facilities Management, or 911.<?p>
+
+                <h2>What is the purpose of incident reporting?</h2>
+
+                <p>Incidents must be reported in order to:</p>
+                <ul>
+                  <li>Prevent a similar or more serious situation from happening again </li>
+                  <li>Ensure that appropriate follow-up is undertaken</li>
+                  <li>Ensure that staff responsible for those working and studying in the building are aware of situations needing attention</li>
+                </ul>
+
+                <h2>Do I have to report an incident?</h2>
+
+                <p>Yes, it is your responsibility to submit an incident report as soon as you are free to do so.</p>
+
+                <h2>What happens to my submitted report?</h2>
+
+                <p>Your report is sent to two people:</p>
+                <ul>
+                  <li>The Assistant Director of Libraries for Finances & Facilities</li>
+                  <li>The Associate Director of Libraries for Learning & Research Services</li>
+                </ul>
+              </div>';
+
+  $output .= '<a href="/node/add/incident-report" class="report-link btn btn-default">Report an incident</a>';
 
   if (user_access('view incident reports')) {
     $output .= views_embed_view('incident_reports', 'block_1');
