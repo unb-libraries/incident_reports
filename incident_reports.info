@@ -52,7 +52,6 @@ features[user_permission][] = edit own incident_report content
 features[user_permission][] = follow up on incident reports
 features[user_permission][] = view incident reports
 features[user_role][] = Incident Report Admin
-features[user_role][] = Incident Report Reg User (Role for testing only)
 features[user_role][] = Regular Staff Member
 features[views_view][] = incident_reports
 features_exclude[dependencies][incident_reports] = incident_reports
