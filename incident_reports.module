@@ -272,6 +272,12 @@ function _send_notification_email($node, $action) {
   $users_to_notify[] = $dept_head->name;
   $users_to_notify[] = $submitter->name;
 
+  // Remove admin from users to notify, since admin doesn't have a real email address
+  $key = array_search('admin', $users_to_notify);
+  if($key !== false){
+      unset($users_to_notify[$key]);
+  }
+
   // If no notifees set, no need to send an email.
   if ($users_to_notify == '') {
     return;
@@ -280,15 +286,20 @@ function _send_notification_email($node, $action) {
   $nid = $node->nid;
   $title = $node->title;
 
+  $submitter_name = $submitter->field_first_name['und'][0]['safe_value'] . ' ' . $submitter->field_last_name['und'][0]['safe_value'];
+  if ($submitter->name == 'admin') {
+    $submitter_name = 'Admin';
+  }
+
   switch ($action) {
     case 'create':
       $subject = 'Incident Report Submitted: ' . $node->title;
-      $message = $submitter->field_first_name['und'][0]['safe_value'] . ' ' . $submitter->field_last_name['und'][0]['safe_value'] . " submitted the following incident report:\n\n";
+      $message = $submitter_name . " submitted the following incident report:\n\n";
     break;
 
     case 'update':
       $subject = 'Incident Report Updated: ' . $node->title;
-      $message = $submitter->field_first_name['und'][0]['safe_value'] . ' ' . $submitter->field_last_name['und'][0]['safe_value'] . " updated the following incident report:\n\n";
+      $message = $submitter_name . " updated the following incident report:\n\n";
     break;
 
     default:
@@ -330,10 +341,10 @@ function _send_notification_email($node, $action) {
   $message .= 'Date and Time of incident: ' . $date . ' ' . $time . "\n";
   $message .= "View and/or Update Full Report: http://staff.lib.unb.ca/node/" . $nid;
 
-  foreach ($users_to_notify as $user) {
+  foreach ($users_to_notify as $user_to_notify) {
     $headers = "From: libsystems@unb.ca\r\n" .
               "Reply-To: libsystems@unb.ca\r\n" .
               'X-Mailer: PHP/' . phpversion();
-    mail($user . '@unb.ca', $subject, $message, $headers);
+    mail($user_to_notify . '@unb.ca', $subject, $message, $headers);
   }
 }
