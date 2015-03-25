@@ -16,6 +16,7 @@ function incident_reports_user_default_permissions() {
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
       'Incident Report Reg User (Role for testing only)' => 'Incident Report Reg User (Role for testing only)',
+      'Regular Staff Member' => 'Regular Staff Member',
     ),
     'module' => 'node',
   );
@@ -23,18 +24,14 @@ function incident_reports_user_default_permissions() {
   // Exported permission: 'delete any incident_report content'.
   $permissions['delete any incident_report content'] = array(
     'name' => 'delete any incident_report content',
-    'roles' => array(
-      'Incident Report Admin' => 'Incident Report Admin',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'delete own incident_report content'.
   $permissions['delete own incident_report content'] = array(
     'name' => 'delete own incident_report content',
-    'roles' => array(
-      'Incident Report Admin' => 'Incident Report Admin',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -43,6 +40,8 @@ function incident_reports_user_default_permissions() {
     'name' => 'edit any incident_report content',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
+      'Incident Report Reg User (Role for testing only)' => 'Incident Report Reg User (Role for testing only)',
+      'Regular Staff Member' => 'Regular Staff Member',
     ),
     'module' => 'node',
   );
@@ -53,6 +52,7 @@ function incident_reports_user_default_permissions() {
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
       'Incident Report Reg User (Role for testing only)' => 'Incident Report Reg User (Role for testing only)',
+      'Regular Staff Member' => 'Regular Staff Member',
     ),
     'module' => 'node',
   );

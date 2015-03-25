@@ -33,7 +33,7 @@ function incident_reports_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_action_taken',
-    'label' => 'Action Taken',
+    'label' => 'Additional Details or Comments',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -46,7 +46,7 @@ function incident_reports_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -127,7 +127,7 @@ function incident_reports_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_details',
-    'label' => 'Details',
+    'label' => 'Full Description of Incident, Including Actions Taken',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -140,7 +140,7 @@ function incident_reports_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 11,
+      'weight' => 1,
     ),
   );
 
@@ -204,7 +204,7 @@ function incident_reports_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_follow_up',
-    'label' => 'Follow up',
+    'label' => 'Admin Follow up',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -282,7 +282,7 @@ function incident_reports_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_location_of_incident',
     'label' => 'Location of Incident',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
@@ -295,8 +295,8 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_nature_of_incident'
-  $field_instances['node-incident_report-field_nature_of_incident'] = array(
+  // Exported field_instance: 'node-incident_report-field_notify'
+  $field_instances['node-incident_report-field_notify'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
     'deleted' => 0,
@@ -304,10 +304,10 @@ function incident_reports_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
+        'module' => 'list',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
+        'type' => 'list_default',
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -317,21 +317,18 @@ function incident_reports_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_nature_of_incident',
-    'label' => 'Nature of Incident',
+    'field_name' => 'field_notify',
+    'label' => 'Notify Department Supervisor',
     'required' => 1,
     'settings' => array(
-      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 12,
     ),
   );
 
@@ -340,7 +337,7 @@ function incident_reports_field_default_field_instances() {
     'bundle' => 'incident_report',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'e.g. UNB Security, Fredericton Police',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -358,7 +355,7 @@ function incident_reports_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_personnel_notified',
-    'label' => 'Personnel Notified',
+    'label' => 'Departments Notified',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -380,7 +377,7 @@ function incident_reports_field_default_field_instances() {
     'bundle' => 'incident_report',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'In-person, phone, and email responses',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -398,7 +395,7 @@ function incident_reports_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_respondents',
-    'label' => 'Respondents',
+    'label' => 'Respondents to Incident',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -494,7 +491,7 @@ function incident_reports_field_default_field_instances() {
     'bundle' => 'incident_report',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'e.g. Lesley Balcom, Joe Smith',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -512,7 +509,7 @@ function incident_reports_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_staff_members_involved',
-    'label' => 'Staff Members Involved',
+    'label' => 'Library Staff Involved',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -531,19 +528,22 @@ function incident_reports_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Action Taken');
+  t('Additional Details or Comments');
+  t('Admin Follow up');
   t('Date and Time of Incident');
-  t('Details');
+  t('Departments Notified');
   t('ENG Rooms');
-  t('Follow up');
+  t('Full Description of Incident, Including Actions Taken');
   t('HIL Rooms');
+  t('In-person, phone, and email responses');
+  t('Library Staff Involved');
   t('Location of Incident');
-  t('Nature of Incident');
-  t('Personnel Notified');
-  t('Respondents');
+  t('Notify Department Supervisor');
+  t('Respondents to Incident');
   t('SCI Rooms');
   t('South Gym Rooms');
-  t('Staff Members Involved');
+  t('e.g. Lesley Balcom, Joe Smith');
+  t('e.g. UNB Security, Fredericton Police');
 
   return $field_instances;
 }

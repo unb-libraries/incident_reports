@@ -16,5 +16,17 @@ function incident_reports_user_default_roles() {
     'weight' => 29,
   );
 
+  // Exported role: Incident Report Reg User (Role for testing only).
+  $roles['Incident Report Reg User (Role for testing only)'] = array(
+    'name' => 'Incident Report Reg User (Role for testing only)',
+    'weight' => 37,
+  );
+
+  // Exported role: Regular Staff Member.
+  $roles['Regular Staff Member'] = array(
+    'name' => 'Regular Staff Member',
+    'weight' => 2,
+  );
+
   return $roles;
 }

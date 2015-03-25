@@ -61,14 +61,6 @@ function incident_reports_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Content: Nature of Incident */
-  $handler->display->display_options['fields']['field_nature_of_incident_1']['id'] = 'field_nature_of_incident_1';
-  $handler->display->display_options['fields']['field_nature_of_incident_1']['table'] = 'field_data_field_nature_of_incident';
-  $handler->display->display_options['fields']['field_nature_of_incident_1']['field'] = 'field_nature_of_incident';
-  $handler->display->display_options['fields']['field_nature_of_incident_1']['label'] = '';
-  $handler->display->display_options['fields']['field_nature_of_incident_1']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_nature_of_incident_1']['alter']['text'] = '<strong>Nature of Incident:</strong> [field_nature_of_incident_1]';
-  $handler->display->display_options['fields']['field_nature_of_incident_1']['element_label_colon'] = FALSE;
   /* Field: Content: SCI Rooms */
   $handler->display->display_options['fields']['field_sci_rooms']['id'] = 'field_sci_rooms';
   $handler->display->display_options['fields']['field_sci_rooms']['table'] = 'field_data_field_sci_rooms';
@@ -253,6 +245,20 @@ function incident_reports_views_default_views() {
   $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
   $handler->display->display_options['filters']['uid_current']['relationship'] = 'uid';
   $handler->display->display_options['filters']['uid_current']['value'] = '1';
+
+  /* Display: Incident reports department head */
+  $handler = $view->new_display('block', 'Incident reports department head', 'block_3');
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Notify Department Supervisor (field_notify) */
+  $handler->display->display_options['arguments']['field_notify_value']['id'] = 'field_notify_value';
+  $handler->display->display_options['arguments']['field_notify_value']['table'] = 'field_data_field_notify';
+  $handler->display->display_options['arguments']['field_notify_value']['field'] = 'field_notify_value';
+  $handler->display->display_options['arguments']['field_notify_value']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_notify_value']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_notify_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_notify_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_notify_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_notify_value']['limit'] = '0';
   $export['incident_reports'] = $view;
 
   return $export;

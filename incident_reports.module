@@ -62,10 +62,30 @@ function incident_reports_form_alter(&$form, $form_state, $form_id) {
     $form['field_south_gym_rooms'][$language]['#title'] = 'Room';
 
     // Hide follow-up field from regular users.
-    if (!user_access('follow up on incident reports')) {
+    $user_is_dept_head = false;
+    if ($form['nid']['#value'] != NULL) {
+      global $user;
+      $node = node_load($form['nid']['#value']);
+      $user_is_dept_head = $user->uid == $node->field_notify['und'][0]['value'];
+    }
+    if (!user_access('follow up on incident reports') && !$user_is_dept_head) {
       $language = $form['field_follow_up']['#language'];
       $form['field_follow_up'][$language][0]['value']['#type'] = 'hidden';
     }
+
+    // Change value of submit button
+    if ($form['nid']['#value'] == NULL) { // Creating new report
+      $form['actions']['submit']['#value'] = t('Submit Incident Report');
+    }
+    else { //Editing existing report
+      $form['actions']['submit']['#value'] = t('Update Incident Report');
+    }
+
+    // Add in alert box
+    $form['alert'] = array(
+      '#markup' => '<div class="alert alert-success">You may return to this Report at any time to add follow-up notes or make corrections. <strong>All edits are tracked in the revisions history.</div>',
+      '#weight' => 99,
+    );
   }
 }
 
@@ -73,12 +93,13 @@ function incident_reports_form_alter(&$form, $form_state, $form_id) {
  * Implements hook_node_access().
  */
 function incident_reports_node_access($node, $op, $account) {
-  // Only allow access for regular users if they created the incident report.
+  // Only allow access for regular users if they created the incident report or if they are head of the department listed in the report.
   $is_incident_report = isset($node->type) && $node->type == 'incident_report';
   $can_access_all_reports = user_access('view incident reports');
   global $user;
   $user_owns_content = isset($node->name) && $user->name == $node->name;
-  $can_access_this_report = $can_access_all_reports || $user_owns_content;
+  $user_is_dept_head = $user->uid == $node->field_notify['und'][0]['value'];
+  $can_access_this_report = $can_access_all_reports || $user_owns_content || $user_is_dept_head;
 
   if ($is_incident_report && !$can_access_this_report) {
     return NODE_ACCESS_DENY;
@@ -163,10 +184,14 @@ function _incident_reports_page() {
 
                 <h2>What happens to my submitted report?</h2>
 
-                <p>Your report is sent to two people:</p>
+                <p>Your report is sent to six people:</p>
                 <ul>
-                  <li>The Assistant Director of Libraries for Finances & Facilities</li>
-                  <li>The Associate Director of Libraries for Learning & Research Services</li>
+                  <li>Director, UNB Libraries</li>
+                  <li>Associate Director of Libraries for Learning & Research Services</li>
+                  <li>Associate Director of Libraries for Academic and Scholarly Technologies</li>
+                  <li>Associate Director of Collection Services</li>
+                  <li>Assistant Director of Libraries for Finances & Facilities</li>
+                  <li>Your identified supervisor/department head</li>
                 </ul>
               </div>';
 
@@ -176,9 +201,14 @@ function _incident_reports_page() {
     $output .= views_embed_view('incident_reports', 'block_1');
   }
   else {
-    $num_incidents = count(views_get_view_result('incident_reports', 'block_2'));
-    $output .= $num_incidents > 0 ? "<h2>Previously Reported Incidents</h2>" : '';
+    $num_incidents_reported = count(views_get_view_result('incident_reports', 'block_2'));
+    $output .= $num_incidents_reported > 0 ? "<h2>Previously Reported Incidents</h2>" : '';
     $output .= views_embed_view('incident_reports', 'block_2');
+
+    global $user;
+    $num_incidents_dept = count(views_get_view_result('incident_reports', 'block_3', $user->uid));
+    $output .= $num_incidents_dept > 0 ? "<h2>Incidents Within Your Department</h2>" : '';
+    $output .= views_embed_view('incident_reports', 'block_3', $user->uid);
   }
   return $output;
 }
@@ -216,38 +246,49 @@ function _incident_reports_config_form($form, &$form_state) {
  * Generates notification email when incident report is created or edited.
  */
 function _send_notification_email($node, $action) {
+  // Notify: 1) Users specified in config
   $users_to_notify = variable_get('incident_reports_notifees');
   global $user;
+
+  // Strip out invalid usernames
+  if ($users_to_notify == '') {
+    $user_to_notify = array();
+  }
+  else {
+    $users_to_notify = array_filter(
+      explode(',', $users_to_notify),
+      function($elem) {
+        if (!user_load_by_name(trim($elem))) {
+          return false;
+        }
+        return true;
+      }
+    );
+  }
+
+  // Also notify 2) User identified as dept head, 3) User who submitted report
+  $dept_head = user_load($node->field_notify['und'][0]['value']);
+  $submitter = user_load($user->uid);
+  $users_to_notify[] = $dept_head->name;
+  $users_to_notify[] = $submitter->name;
+
   // If no notifees set, no need to send an email.
   if ($users_to_notify == '') {
     return;
   }
-  // Strip out invalid usernames and username of user who created/updated incident report.
-  $users_to_notify = array_filter(
-    explode(',', $users_to_notify),
-    function($elem) {
-      if (!user_load_by_name(trim($elem))) {
-        return false;
-      }
-      if ($user->name == trim($elem)) {
-        return false;
-      }
-      return true;
-    }
-  );
 
   $nid = $node->nid;
   $title = $node->title;
 
   switch ($action) {
     case 'create':
-      $subject = 'A new incident report has been created';
-      $message = 'A new incident report, "' . $title . '", has been created.';
+      $subject = 'Incident Report Submitted: ' . $node->title;
+      $message = $submitter->field_first_name['und'][0]['safe_value'] . ' ' . $submitter->field_last_name['und'][0]['safe_value'] . " submitted the following incident report:\n\n";
     break;
 
     case 'update':
-      $subject = 'An incident report has been updated';
-      $message = 'An incident report, "' . $title . '", has been updated.';
+      $subject = 'Incident Report Updated: ' . $node->title;
+      $message = $submitter->field_first_name['und'][0]['safe_value'] . ' ' . $submitter->field_last_name['und'][0]['safe_value'] . " updated the following incident report:\n\n";
     break;
 
     default:
@@ -255,7 +296,40 @@ function _send_notification_email($node, $action) {
     break;
   }
 
-  $message .= "\nView this incident report at http://staff.lib.unb.ca/node/" . $nid;
+  $location = $node->field_location_of_incident['und'][0]['value'];
+  switch($location) {
+    case 'HIL':
+      $room = $node->field_hil_rooms['und'][0]['value'];
+    break;
+    case 'SCI':
+      $room = $node->field_sci_rooms['und'][0]['value'];
+    break;
+    case 'ENG':
+      $room = $node->field_eng_rooms['und'][0]['value'];
+    break;
+    case 'GYM':
+      $room = $node->field_south_gym_rooms['und'][0]['value'];
+    break;
+    case 'NA':
+    default:
+      $room = '';
+    break;
+  }
+
+  $location = render(field_view_value('node', $node, 'field_location_of_incident', $node->field_location_of_incident['und'][0], array()));
+  $datetime = strtotime($node->field_date_and_time_of_incident['und'][0]['value']);
+  $date = date('F j, Y', $datetime);
+  $time = date('g:i a', $datetime);
+
+  $message .= 'Short Title: ' . $node->title . "\n";
+  $message .= 'Location of incident: ' . $location ;
+  if ($room != '') {
+    $message .= ', ' . $room;
+  }
+  $message .= "\n";
+  $message .= 'Date and Time of incident: ' . $date . ' ' . $time . "\n";
+  $message .= "View and/or Update Full Report: http://staff.lib.unb.ca/node/" . $nid;
+
   foreach ($users_to_notify as $user) {
     $headers = "From: libsystems@unb.ca\r\n" .
               "Reply-To: libsystems@unb.ca\r\n" .

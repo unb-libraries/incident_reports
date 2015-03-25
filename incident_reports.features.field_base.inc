@@ -17,6 +17,14 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_action_taken',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -36,6 +44,7 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_date_and_time_of_incident',
+    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'date',
@@ -65,6 +74,7 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_eng_rooms',
+    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -95,6 +105,14 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_follow_up',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -114,6 +132,7 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_hil_rooms',
+    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -398,6 +417,7 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_location_of_incident',
+    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -407,6 +427,7 @@ function incident_reports_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
+        'NA' => 'Not Applicable',
         'HIL' => 'Harriet Irving Library',
         'SCI' => 'Science and Forestry Library',
         'ENG' => 'Engineering and Computer Science Library',
@@ -418,25 +439,34 @@ function incident_reports_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_nature_of_incident'
-  $field_bases['field_nature_of_incident'] = array(
+  // Exported field_base: 'field_notify'
+  $field_bases['field_notify'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_nature_of_incident',
+    'field_name' => 'field_notify',
+    'foreign keys' => array(),
     'indexes' => array(
-      'format' => array(
-        0 => 'format',
+      'value' => array(
+        0 => 'value',
       ),
     ),
     'locked' => 0,
-    'module' => 'text',
+    'module' => 'list',
     'settings' => array(
-      'max_length' => 255,
+      'allowed_values' => array(
+        104 => 'Teri Noel - Access Services',
+        24 => 'Francesca Holyoke - Archives',
+        117 => 'Steve Sloan - Engineering and Science Libraries',
+        120 => 'Joanne Smyth - Gov Docs/Microforms/Reference',
+        121 => 'Merle Steeves - Cataloguing',
+        144 => 'Leah - testing only',
+      ),
+      'allowed_values_function' => '',
     ),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_personnel_notified'
@@ -446,6 +476,14 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_personnel_notified',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -467,6 +505,14 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_respondents',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -488,6 +534,7 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_sci_rooms',
+    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -523,6 +570,7 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_south_gym_rooms',
+    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -562,6 +610,14 @@ function incident_reports_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_staff_members_involved',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',

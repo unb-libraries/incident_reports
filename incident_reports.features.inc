@@ -21,7 +21,7 @@ function incident_reports_node_info() {
       'base' => 'node_content',
       'description' => t('Incident report for documenting occurrences'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Short Title (e.g. Small Fire at Science Library)'),
       'help' => '',
     ),
   );
