@@ -266,11 +266,15 @@ function _send_notification_email($node, $action) {
     );
   }
 
-  // Also notify 2) User identified as dept head, 3) User who submitted report
+  // Also notify 2) User identified as dept head, 3) User who submitted/updated report
   $dept_head = user_load($node->field_notify['und'][0]['value']);
   $submitter = user_load($user->uid);
-  $users_to_notify[] = $dept_head->name;
-  $users_to_notify[] = $submitter->name;
+  if (!in_array($dept_head->name, $users_to_notify)) {
+    $users_to_notify[] = $dept_head->name;
+  }
+  if (!in_array($submitter->name, $users_to_notify)) {
+    $users_to_notify[] = $submitter->name;
+  }
 
   // Remove admin from users to notify, since admin doesn't have a real email address
   $key = array_search('admin', $users_to_notify);
