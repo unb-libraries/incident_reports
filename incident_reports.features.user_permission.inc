@@ -15,7 +15,7 @@ function incident_reports_user_default_permissions() {
     'name' => 'create incident_report content',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
-      'Regular Staff Member' => 'Regular Staff Member',
+      'UNBF Staff' => 'UNBF Staff',
     ),
     'module' => 'node',
   );
@@ -39,7 +39,7 @@ function incident_reports_user_default_permissions() {
     'name' => 'edit any incident_report content',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
-      'Regular Staff Member' => 'Regular Staff Member',
+      'UNBF Staff' => 'UNBF Staff',
     ),
     'module' => 'node',
   );
@@ -49,7 +49,7 @@ function incident_reports_user_default_permissions() {
     'name' => 'edit own incident_report content',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
-      'Regular Staff Member' => 'Regular Staff Member',
+      'UNBF Staff' => 'UNBF Staff',
     ),
     'module' => 'node',
   );

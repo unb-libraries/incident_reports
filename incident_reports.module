@@ -13,7 +13,7 @@ include_once 'incident_reports.features.inc';
 function incident_reports_menu() {
   $items = array();
   $items['incident-reports'] = array(
-    'title' => 'Incident Reports (DRAFT)',
+    'title' => 'Incident Reports (FR)',
     'page callback' => '_incident_reports_page',
     'access arguments' => array('report an incident'),
   );
@@ -267,11 +267,13 @@ function _send_notification_email($node, $action) {
   }
 
   // Also notify 2) User identified as dept head, 3) User who submitted/updated report
-  $dept_head = user_load($node->field_notify['und'][0]['value']);
-  $submitter = user_load($user->uid);
-  if (!in_array($dept_head->name, $users_to_notify)) {
-    $users_to_notify[] = $dept_head->name;
+  if ($node->field_notify['und'][0]['value'] != 'NA') {
+    $dept_head = user_load($node->field_notify['und'][0]['value']);
+    if (!in_array($dept_head->name, $users_to_notify)) {
+      $users_to_notify[] = $dept_head->name;
+    }
   }
+  $submitter = user_load($user->uid);
   if (!in_array($submitter->name, $users_to_notify)) {
     $users_to_notify[] = $submitter->name;
   }
@@ -332,9 +334,11 @@ function _send_notification_email($node, $action) {
   }
 
   $location = render(field_view_value('node', $node, 'field_location_of_incident', $node->field_location_of_incident['und'][0], array()));
-  $datetime = strtotime($node->field_date_and_time_of_incident['und'][0]['value']);
-  $date = date('F j, Y', $datetime);
-  $time = date('g:i a', $datetime);
+
+  $datetime = new DateTime($node->field_date_and_time_of_incident['und'][0]['value'], new DateTimeZone($node->field_date_and_time_of_incident['und'][0]['timezone_db']));
+  $datetime->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+  $date = $datetime->format('F j, Y');
+  $time = $datetime->format('g:i a');
 
   $message .= 'Short Title: ' . $node->title . "\n";
   $message .= 'Location of incident: ' . $location ;
