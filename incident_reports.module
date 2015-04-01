@@ -95,14 +95,16 @@ function incident_reports_form_alter(&$form, $form_state, $form_id) {
 function incident_reports_node_access($node, $op, $account) {
   // Only allow access for regular users if they created the incident report or if they are head of the department listed in the report.
   $is_incident_report = isset($node->type) && $node->type == 'incident_report';
-  $can_access_all_reports = user_access('view incident reports');
-  global $user;
-  $user_owns_content = isset($node->name) && $user->name == $node->name;
-  $user_is_dept_head = $user->uid == $node->field_notify['und'][0]['value'];
-  $can_access_this_report = $can_access_all_reports || $user_owns_content || $user_is_dept_head;
+  if ($is_incident_report) {
+    $can_access_all_reports = user_access('view incident reports');
+    global $user;
+    $user_owns_content = isset($node->name) && $user->name == $node->name;
+    $user_is_dept_head = $user->uid == $node->field_notify['und'][0]['value'];
+    $can_access_this_report = $can_access_all_reports || $user_owns_content || $user_is_dept_head;
 
-  if ($is_incident_report && !$can_access_this_report) {
-    return NODE_ACCESS_DENY;
+    if (!$can_access_this_report) {
+      return NODE_ACCESS_DENY;
+    }
   }
 }
 
