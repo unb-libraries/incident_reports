@@ -27,6 +27,24 @@ function incident_reports_menu() {
   return $items;
 }
 
+// /**
+//  * Implements hook_preprocess_HOOK().
+//  */
+function incident_reports_preprocess_node(&$variables) {
+    drupal_add_css('
+      .node-type-incident-report .field {
+        margin-top: 15px;
+      }
+    ', 'inline');
+  $node = $variables['node'];
+  if ($node->type == 'incident_report') {
+    $user = user_load($node->uid);
+    $author_name = $user->field_first_name['und'][0]['safe_value'] . ' ' . $user->field_last_name['und'][0]['safe_value'];
+    $submitted = 'Submitted by <a href="/users/' . $user->name . '" title="View user profile." class="username" xml:lang="" about="/users/' . $user->name . '" typeof="sioc:UserAccount" property="foaf:name" datatype="">' .$author_name . '</a> on ' . format_date($node->created, 'medium');
+    $variables['submitted'] = $submitted;
+  }
+}
+
 /**
  * Implements hook_permission().
  */
