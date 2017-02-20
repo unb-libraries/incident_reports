@@ -437,7 +437,7 @@ function incident_reports_field_default_field_bases() {
       'allowed_values' => array(
         104 => 'Teri Noel - Access Services',
         24 => 'Francesca Holyoke - Archives',
-        117 => 'Jeannie Bail - Engineering and Science Libraries',
+        4879 => 'Jeannie Bail - Engineering and Science Libraries',
         120 => 'Joanne Smyth - Gov Docs/Microforms/Reference',
         121 => 'Merle Steeves - Cataloguing',
       ),
