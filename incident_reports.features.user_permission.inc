@@ -16,6 +16,7 @@ function incident_reports_user_default_permissions() {
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
       'UNBF Staff' => 'UNBF Staff',
+      'administrator' => 'administrator',
     ),
     'module' => 'node',
   );
@@ -23,14 +24,18 @@ function incident_reports_user_default_permissions() {
   // Exported permission: 'delete any incident_report content'.
   $permissions['delete any incident_report content'] = array(
     'name' => 'delete any incident_report content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete own incident_report content'.
   $permissions['delete own incident_report content'] = array(
     'name' => 'delete own incident_report content',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'node',
   );
 
@@ -40,6 +45,7 @@ function incident_reports_user_default_permissions() {
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
       'UNBF Staff' => 'UNBF Staff',
+      'administrator' => 'administrator',
     ),
     'module' => 'node',
   );
@@ -50,6 +56,7 @@ function incident_reports_user_default_permissions() {
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
       'UNBF Staff' => 'UNBF Staff',
+      'administrator' => 'administrator',
     ),
     'module' => 'node',
   );
@@ -59,6 +66,7 @@ function incident_reports_user_default_permissions() {
     'name' => 'follow up on incident reports',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
+      'administrator' => 'administrator',
     ),
     'module' => 'incident_reports',
   );
@@ -68,6 +76,7 @@ function incident_reports_user_default_permissions() {
     'name' => 'view incident reports',
     'roles' => array(
       'Incident Report Admin' => 'Incident Report Admin',
+      'administrator' => 'administrator',
     ),
     'module' => 'incident_reports',
   );

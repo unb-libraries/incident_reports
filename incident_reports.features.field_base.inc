@@ -10,7 +10,7 @@
 function incident_reports_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_action_taken'
+  // Exported field_base: 'field_action_taken'.
   $field_bases['field_action_taken'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -29,7 +29,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_date_and_time_of_incident'
+  // Exported field_base: 'field_date_and_time_of_incident'.
   $field_bases['field_date_and_time_of_incident'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -58,7 +58,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'date',
   );
 
-  // Exported field_base: 'field_eng_rooms'
+  // Exported field_base: 'field_eng_rooms'.
   $field_bases['field_eng_rooms'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -88,7 +88,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_follow_up'
+  // Exported field_base: 'field_follow_up'.
   $field_bases['field_follow_up'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -107,7 +107,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_hil_rooms'
+  // Exported field_base: 'field_hil_rooms'.
   $field_bases['field_hil_rooms'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -391,7 +391,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_location_of_incident'
+  // Exported field_base: 'field_location_of_incident'.
   $field_bases['field_location_of_incident'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -419,7 +419,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_notify'
+  // Exported field_base: 'field_notify'.
   $field_bases['field_notify'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -435,11 +435,12 @@ function incident_reports_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
+        'NA' => 'Not Applicable',
         104 => 'Teri Noel - Access Services',
         24 => 'Francesca Holyoke - Archives',
         4879 => 'Jeannie Bail - Engineering and Science Libraries',
         120 => 'Joanne Smyth - Gov Docs/Microforms/Reference',
-        121 => 'Merle Steeves - Cataloguing',
+        121 => 'Merle Steeves - South Gym',
       ),
       'allowed_values_function' => '',
     ),
@@ -447,7 +448,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_personnel_notified'
+  // Exported field_base: 'field_personnel_notified'.
   $field_bases['field_personnel_notified'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -468,7 +469,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_respondents'
+  // Exported field_base: 'field_respondents'.
   $field_bases['field_respondents'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -489,7 +490,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_sci_rooms'
+  // Exported field_base: 'field_sci_rooms'.
   $field_bases['field_sci_rooms'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -524,7 +525,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_south_gym_rooms'
+  // Exported field_base: 'field_south_gym_rooms'.
   $field_bases['field_south_gym_rooms'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -563,7 +564,7 @@ function incident_reports_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_staff_members_involved'
+  // Exported field_base: 'field_staff_members_involved'.
   $field_bases['field_staff_members_involved'] = array(
     'active' => 1,
     'cardinality' => 1,

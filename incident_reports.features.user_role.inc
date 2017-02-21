@@ -13,13 +13,13 @@ function incident_reports_user_default_roles() {
   // Exported role: Incident Report Admin.
   $roles['Incident Report Admin'] = array(
     'name' => 'Incident Report Admin',
-    'weight' => 30,
+    'weight' => 8,
   );
 
   // Exported role: Regular Staff Member.
   $roles['Regular Staff Member'] = array(
     'name' => 'Regular Staff Member',
-    'weight' => 2,
+    'weight' => 3,
   );
 
   return $roles;

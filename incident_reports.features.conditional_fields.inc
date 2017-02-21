@@ -10,7 +10,7 @@
 function incident_reports_conditional_fields_default_fields() {
   $items = array();
 
-  $items[] = array(
+  $items["node:incident_report:0"] = array(
     'entity' => 'node',
     'bundle' => 'incident_report',
     'dependent' => 'field_eng_rooms',
@@ -446,7 +446,7 @@ function incident_reports_conditional_fields_default_fields() {
     ),
   );
 
-  $items[] = array(
+  $items["node:incident_report:1"] = array(
     'entity' => 'node',
     'bundle' => 'incident_report',
     'dependent' => 'field_hil_rooms',
@@ -882,7 +882,7 @@ function incident_reports_conditional_fields_default_fields() {
     ),
   );
 
-  $items[] = array(
+  $items["node:incident_report:2"] = array(
     'entity' => 'node',
     'bundle' => 'incident_report',
     'dependent' => 'field_sci_rooms',
@@ -1318,7 +1318,7 @@ function incident_reports_conditional_fields_default_fields() {
     ),
   );
 
-  $items[] = array(
+  $items["node:incident_report:3"] = array(
     'entity' => 'node',
     'bundle' => 'incident_report',
     'dependent' => 'field_south_gym_rooms',

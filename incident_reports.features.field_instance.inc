@@ -10,7 +10,7 @@
 function incident_reports_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-incident_report-field_action_taken'
+  // Exported field_instance: 'node-incident_report-field_action_taken'.
   $field_instances['node-incident_report-field_action_taken'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -50,7 +50,8 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_date_and_time_of_incident'
+  // Exported field_instance:
+  // 'node-incident_report-field_date_and_time_of_incident'.
   $field_instances['node-incident_report-field_date_and_time_of_incident'] = array(
     'bundle' => 'incident_report',
     'deleted' => 0,
@@ -65,6 +66,7 @@ function incident_reports_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
         'weight' => 1,
@@ -104,7 +106,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_details'
+  // Exported field_instance: 'node-incident_report-field_details'.
   $field_instances['node-incident_report-field_details'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -144,7 +146,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_eng_rooms'
+  // Exported field_instance: 'node-incident_report-field_eng_rooms'.
   $field_instances['node-incident_report-field_eng_rooms'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -181,7 +183,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_follow_up'
+  // Exported field_instance: 'node-incident_report-field_follow_up'.
   $field_instances['node-incident_report-field_follow_up'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -221,7 +223,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_hil_rooms'
+  // Exported field_instance: 'node-incident_report-field_hil_rooms'.
   $field_instances['node-incident_report-field_hil_rooms'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -258,7 +260,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_location_of_incident'
+  // Exported field_instance: 'node-incident_report-field_location_of_incident'.
   $field_instances['node-incident_report-field_location_of_incident'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -295,7 +297,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_notify'
+  // Exported field_instance: 'node-incident_report-field_notify'.
   $field_instances['node-incident_report-field_notify'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -332,7 +334,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_personnel_notified'
+  // Exported field_instance: 'node-incident_report-field_personnel_notified'.
   $field_instances['node-incident_report-field_personnel_notified'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -372,7 +374,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_respondents'
+  // Exported field_instance: 'node-incident_report-field_respondents'.
   $field_instances['node-incident_report-field_respondents'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -412,7 +414,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_sci_rooms'
+  // Exported field_instance: 'node-incident_report-field_sci_rooms'.
   $field_instances['node-incident_report-field_sci_rooms'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -449,7 +451,7 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_south_gym_rooms'
+  // Exported field_instance: 'node-incident_report-field_south_gym_rooms'.
   $field_instances['node-incident_report-field_south_gym_rooms'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
@@ -486,7 +488,8 @@ function incident_reports_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-incident_report-field_staff_members_involved'
+  // Exported field_instance:
+  // 'node-incident_report-field_staff_members_involved'.
   $field_instances['node-incident_report-field_staff_members_involved'] = array(
     'bundle' => 'incident_report',
     'default_value' => NULL,
