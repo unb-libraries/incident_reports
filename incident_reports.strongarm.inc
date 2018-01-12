@@ -82,6 +82,13 @@ function incident_reports_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'incident_reports_notifees';
+  $strongarm->value = 'mtiozzo,jlt,lbalcom,jmackenz,jbail';
+  $export['incident_reports_notifees'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_incident_report';
   $strongarm->value = array(
     0 => 'main-menu',

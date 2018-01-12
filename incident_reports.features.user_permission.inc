@@ -17,6 +17,7 @@ function incident_reports_user_default_permissions() {
       'Incident Report Admin' => 'Incident Report Admin',
       'UNBF Staff' => 'UNBF Staff',
       'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
   );
@@ -57,6 +58,7 @@ function incident_reports_user_default_permissions() {
       'Incident Report Admin' => 'Incident Report Admin',
       'UNBF Staff' => 'UNBF Staff',
       'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
   );

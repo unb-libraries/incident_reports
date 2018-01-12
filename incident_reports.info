@@ -63,6 +63,7 @@ features[variable][] = comment_incident_report
 features[variable][] = comment_preview_incident_report
 features[variable][] = comment_subject_field_incident_report
 features[variable][] = field_bundle_settings_node__incident_report
+features[variable][] = incident_reports_notifees
 features[variable][] = menu_options_incident_report
 features[variable][] = menu_parent_incident_report
 features[variable][] = node_options_incident_report
