@@ -441,6 +441,7 @@ function incident_reports_field_default_field_bases() {
         4879 => 'Jeannie Bail - Engineering and Science Libraries',
         120 => 'Joanne Smyth - Gov Docs/Microforms/Reference',
         121 => 'Merle Steeves - South Gym',
+        16 => 'David Ross - Hans W. Klohn Commons',
       ),
       'allowed_values_function' => '',
     ),
