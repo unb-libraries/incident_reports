@@ -412,6 +412,7 @@ function incident_reports_field_default_field_bases() {
         'SCI' => 'Science and Forestry Library',
         'ENG' => 'Engineering and Computer Science Library',
         'GYM' => 'South Gym',
+        'HANS' => 'Hans W. Klohn Common',
       ),
       'allowed_values_function' => '',
     ),

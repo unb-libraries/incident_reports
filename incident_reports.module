@@ -206,11 +206,11 @@ function _incident_reports_page() {
 
                 <p>Your report is sent to six people:</p>
                 <ul>
-                  <li>Director, UNB Libraries</li>
-                  <li>Associate Director of Libraries for Learning & Research Services</li>
-                  <li>Associate Director of Libraries for Academic and Scholarly Technologies</li>
-                  <li>Associate Director of Collection Services</li>
-                  <li>Assistant Director of Libraries for Finances & Facilities</li>
+                  <li>Dean of Libraries</li>
+                  <li>Director of Libraries for Learning &amp; Research Services</li>
+                  <li>Director of Scholarly Technologies</li>
+                  <li>Director of Collection Services</li>
+                  <li>Director, Finance &amp; Facilities</li>
                   <li>Your identified supervisor/department head</li>
                 </ul>
               </div>';
@@ -347,6 +347,7 @@ function _send_notification_email($node, $action) {
     case 'GYM':
       $room = $node->field_south_gym_rooms['und'][0]['value'];
     break;
+    // HANS: It isn't necessary at this point to have further room selections.
     case 'NA':
     default:
       $room = '';
