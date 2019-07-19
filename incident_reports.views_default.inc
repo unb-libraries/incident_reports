@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * incident_reports.views_default.inc
@@ -32,7 +33,7 @@ function incident_reports_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Content: Author */
+  /* Relationship: Content: Content author */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
@@ -117,7 +118,7 @@ function incident_reports_views_default_views() {
   $handler->display->display_options['sorts']['field_date_and_time_of_incident_value']['field'] = 'field_date_and_time_of_incident_value';
   $handler->display->display_options['sorts']['field_date_and_time_of_incident_value']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['field_date_and_time_of_incident_value']['expose']['label'] = 'Date and Time of Incident (field_date_and_time_of_incident)';
-  /* Filter criterion: Content: Published */
+  /* Filter criterion: Content: Published status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -161,7 +162,7 @@ function incident_reports_views_default_views() {
   $handler->display->display_options['sorts']['field_date_and_time_of_incident_value']['expose']['label'] = 'Date and Time of Incident';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
+  /* Filter criterion: Content: Published status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -225,7 +226,7 @@ function incident_reports_views_default_views() {
   $handler->display->display_options['sorts']['created']['expose']['label'] = 'Post date';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
+  /* Filter criterion: Content: Published status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';

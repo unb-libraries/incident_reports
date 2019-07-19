@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * incident_reports.strongarm.inc
