@@ -437,12 +437,15 @@ function incident_reports_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         'NA' => 'Not Applicable',
-        104 => 'Teri Noel - Access Services',
-        24 => 'Francesca Holyoke - Archives',
+        19 => 'Alicia McLaughlin - Access Services',
+        14 => 'James MacKenzie - Archives',
         4879 => 'Jeannie Bail - Engineering and Science Libraries',
-        120 => 'Joanne Smyth - Gov Docs/Microforms/Reference',
+        68 => 'Siobhan Hanratty - Gov Docs/Microforms/Reference',
         121 => 'Merle Steeves - South Gym',
         16 => 'David Ross - Hans W. Klohn Commons',
+        104 => 'Teri Noel - Access Services',
+        24 => 'Francesca Holyoke - Archives',
+        120 => 'Joanne Smyth - Gov Docs/Microforms/Reference',
       ),
       'allowed_values_function' => '',
     ),

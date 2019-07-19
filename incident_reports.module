@@ -105,6 +105,10 @@ function incident_reports_form_alter(&$form, $form_state, $form_id) {
       '#weight' => 99,
     );
   }
+  // Remove previous Supervisors from select options display.
+  unset($form['field_notify'][$language]['#options'][104]); // Teri Noel (Access Services).
+  unset($form['field_notify'][$language]['#options'][24]); // Francesca Holyoke (Archives).
+  unset($form['field_notify'][$language]['#options'][120]); // Joanne Smyth (Gov Docs/Microforms/Reference).
 }
 
 /**
