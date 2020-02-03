@@ -437,9 +437,9 @@ function incident_reports_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         'NA' => 'Not Applicable',
-        14 => 'James MacKenzie - Archives',
+        14 => 'James MacKenzie - Archives, Microforms and CDS',
         4879 => 'Jeannie Bail - Engineering, Science and Harriet Irving Libraries',
-        68 => 'Siobhan Hanratty - Gov Docs/Microforms/Reference',
+        68 => 'Siobhan Hanratty - Gov Docs and Reference',
         121 => 'Merle Steeves - South Gym',
         16 => 'David Ross - Hans W. Klohn Commons',
         19 => 'Alicia McLaughlin - Access Services',
