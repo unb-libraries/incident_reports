@@ -6,7 +6,6 @@
 
 include_once 'incident_reports.features.inc';
 
-
 /**
  * Implements hook_menu().
  */
@@ -15,7 +14,7 @@ function incident_reports_menu() {
   $items['incident-reports'] = array(
     'title' => 'Incident Reports (FR)',
     'page callback' => '_incident_reports_page',
-    'access arguments' => array('report an incident'),
+    'access callback' => '_check_incident_reports_access',
   );
   $items['admin/config/incident-reports'] = array(
     'title' => 'Incident Reports Configuration',
@@ -25,6 +24,22 @@ function incident_reports_menu() {
     'access arguments' => array('access administration pages'),
   );
   return $items;
+}
+
+/**
+ * Implements access callback
+ */
+function _check_incident_reports_access() {
+  if (!user_access('report an incident')) {
+    return false;
+  }
+  global $user;
+  if (preg_match('/(deskstats|admin)/', $user->name)) {
+    // Exclude access for admin, deskstats-[access, archives,en,hwk,sci] users.
+    return false;
+  }
+
+  return true;
 }
 
 // /**
